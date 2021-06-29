@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.*;
 
 import one.digitalinovation.personapi.dto.response.MessageResponseDTO;
 import one.digitalinovation.personapi.dto.request.PersonDTO;
-import one.digitalinovation.personapi.entity.Person;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/people")
@@ -25,9 +25,12 @@ public class PersonController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public MessageResponseDTO createPerson(@RequestBody @Valid PersonDTO personDTO) {
-
-
         return this.personService.createPerson(personDTO);
+    }
+
+    @GetMapping
+    public List<PersonDTO> listAll(){
+        return this.personService.listAll();
     }
 
 }
